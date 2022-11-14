@@ -1,0 +1,434 @@
+#include<stdio.h> p1002
+#include<math.h>
+int main()
+{
+	long long int a[22][22]={0};
+	long long int bx, by, horsex, horsey;
+	scanf("%lld %lld %lld %lld", &bx, &by, &horsex, &horsey);
+	a[1][1] = 1;//起点  我将起点向右向下一个位置 为了处理边界问题
+	horsex++; horsey++;
+	bx++; by++;
+	for (int i = 1; i <= bx; i++)//i是行 j是列
+	{
+		for (int j = 1; j <= by; j++)//无脑判断
+		{
+			if (i == 1 && j == 1)
+			{
+				continue;
+			}
+			if (abs(i - horsex) == 1 && abs(j - horsey) == 2)
+			{
+				a[i][j] = 0;
+			}
+			else if (abs(i - horsex) == 2 && abs(j - horsey) == 1)
+			{
+				a[i][j] = 0;
+			}
+			else if (i == horsex && j == horsey)
+			{
+				a[i][j] = 0;
+			}
+			else
+			{
+				a[i][j] = a[i - 1][j] + a[i][j - 1];//dp
+			}
+		}
+	}
+	printf("%lld", a[bx][by]);
+}
+#include<stdio.h> //p1067
+#include<math.h>
+int main()
+{
+	int n=0;
+	int m = 0;//用于接收系数
+	scanf("%d", &n);
+	if (n == 0)
+	{
+		scanf("%d", &m);
+		printf("%d", m);
+		return 0;
+	}
+	for(int i=n;i>0;i--)//i是x的幂次
+	{
+		scanf("%d", &m);//m为系数
+		if (m == 0)//系数是0 继续下一个
+		{
+			continue;
+		}
+		else//系数不是0
+		{
+			if (m != 1&&i!=n&&m!=-1)//不是第一个系数
+			{
+				if (i == 1)
+				{
+					if (m > 0)
+					{
+						printf("+%dx", m);
+					}
+					else
+					{
+						printf("%dx", m);
+					}
+				}
+				else
+				{
+					if (m > 0)
+					{
+						printf("+%dx^%d", m, i);
+					}
+					else
+					{
+						printf("%dx^%d", m, i);
+					}
+				}
+			}
+			else if(i==n&&(m==1||m==-1))//i==n表示是第一个系数
+			{
+				if (m == 1)
+				{
+					printf("x^%d", i);
+				}
+				else
+				{
+					printf("-x^%d", i);
+				}
+			}
+			else if (i == n&&m!=1&&m!=-1)
+			{
+				printf("%dx^%d", m, i);
+			}
+			else if (i != n && (m == 1||m==-1))
+			{
+				if (i == 1)
+				{
+					if (m == 1)
+					{
+						printf("+x");
+					}
+					else
+					{
+						printf("-x");
+					}
+				}
+				else
+				{
+					if (m == 1)
+					{
+						printf("+x^%d", i);
+					}
+					else
+					{
+						printf("-x^%d", i);
+					}
+				}
+			}
+		}
+	}
+	scanf("%d", &m);//处理最后一个常数
+	if (m > 0)
+	{
+		printf("+%d", m);
+	}
+	else if (m < 0)
+	{
+		printf("%d", m);
+	}
+}
+#include<stdio.h>//p1217
+#include<math.h>
+int main()
+{
+	int n=0;
+	int m = 0;//用于接收系数
+	scanf("%d", &n);
+	if (n == 0)
+	{
+		scanf("%d", &m);
+		printf("%d", m);
+		return 0;
+	}
+	for(int i=n;i>0;i--)//i是x的幂次
+	{
+		scanf("%d", &m);//m为系数
+		if (m == 0)//系数是0 继续下一个
+		{
+			continue;
+		}
+		else//系数不是0
+		{
+			if (m != 1&&i!=n&&m!=-1)//不是第一个系数
+			{
+				if (i == 1)
+				{
+					if (m > 0)
+					{
+						printf("+%dx", m);
+					}
+					else
+					{
+						printf("%dx", m);
+					}
+				}
+				else
+				{
+					if (m > 0)
+					{
+						printf("+%dx^%d", m, i);
+					}
+					else
+					{
+						printf("%dx^%d", m, i);
+					}
+				}
+			}
+			else if(i==n&&(m==1||m==-1))//i==n表示是第一个系数
+			{
+				if (m == 1)
+				{
+					printf("x^%d", i);
+				}
+				else
+				{
+					printf("-x^%d", i);
+				}
+			}
+			else if (i == n&&m!=1&&m!=-1)
+			{
+				printf("%dx^%d", m, i);
+			}
+			else if (i != n && (m == 1||m==-1))
+			{
+				if (i == 1)
+				{
+					if (m == 1)
+					{
+						printf("+x");
+					}
+					else
+					{
+						printf("-x");
+					}
+				}
+				else
+				{
+					if (m == 1)
+					{
+						printf("+x^%d", i);
+					}
+					else
+					{
+						printf("-x^%d", i);
+					}
+				}
+			}
+		}
+	}
+	scanf("%d", &m);//处理最后一个常数
+	if (m > 0)
+	{
+		printf("+%d", m);
+	}
+	else if (m < 0)
+	{
+		printf("%d", m);
+	}
+}
+#include<stdio.h>//p1303
+#include<math.h>
+int main()
+{
+	int n=0;
+	int m = 0;//用于接收系数
+	scanf("%d", &n);
+	if (n == 0)
+	{
+		scanf("%d", &m);
+		printf("%d", m);
+		return 0;
+	}
+	for(int i=n;i>0;i--)//i是x的幂次
+	{
+		scanf("%d", &m);//m为系数
+		if (m == 0)//系数是0 继续下一个
+		{
+			continue;
+		}
+		else//系数不是0
+		{
+			if (m != 1&&i!=n&&m!=-1)//不是第一个系数
+			{
+				if (i == 1)
+				{
+					if (m > 0)
+					{
+						printf("+%dx", m);
+					}
+					else
+					{
+						printf("%dx", m);
+					}
+				}
+				else
+				{
+					if (m > 0)
+					{
+						printf("+%dx^%d", m, i);
+					}
+					else
+					{
+						printf("%dx^%d", m, i);
+					}
+				}
+			}
+			else if(i==n&&(m==1||m==-1))//i==n表示是第一个系数
+			{
+				if (m == 1)
+				{
+					printf("x^%d", i);
+				}
+				else
+				{
+					printf("-x^%d", i);
+				}
+			}
+			else if (i == n&&m!=1&&m!=-1)
+			{
+				printf("%dx^%d", m, i);
+			}
+			else if (i != n && (m == 1||m==-1))
+			{
+				if (i == 1)
+				{
+					if (m == 1)
+					{
+						printf("+x");
+					}
+					else
+					{
+						printf("-x");
+					}
+				}
+				else
+				{
+					if (m == 1)
+					{
+						printf("+x^%d", i);
+					}
+					else
+					{
+						printf("-x^%d", i);
+					}
+				}
+			}
+		}
+	}
+	scanf("%d", &m);//处理最后一个常数
+	if (m > 0)
+	{
+		printf("+%d", m);
+	}
+	else if (m < 0)
+	{
+		printf("%d", m);
+	}
+}
+#include<stdio.h>//p1706
+#include<math.h>
+int main()
+{
+	int n=0;
+	int m = 0;//用于接收系数
+	scanf("%d", &n);
+	if (n == 0)
+	{
+		scanf("%d", &m);
+		printf("%d", m);
+		return 0;
+	}
+	for(int i=n;i>0;i--)//i是x的幂次
+	{
+		scanf("%d", &m);//m为系数
+		if (m == 0)//系数是0 继续下一个
+		{
+			continue;
+		}
+		else//系数不是0
+		{
+			if (m != 1&&i!=n&&m!=-1)//不是第一个系数
+			{
+				if (i == 1)
+				{
+					if (m > 0)
+					{
+						printf("+%dx", m);
+					}
+					else
+					{
+						printf("%dx", m);
+					}
+				}
+				else
+				{
+					if (m > 0)
+					{
+						printf("+%dx^%d", m, i);
+					}
+					else
+					{
+						printf("%dx^%d", m, i);
+					}
+				}
+			}
+			else if(i==n&&(m==1||m==-1))//i==n表示是第一个系数
+			{
+				if (m == 1)
+				{
+					printf("x^%d", i);
+				}
+				else
+				{
+					printf("-x^%d", i);
+				}
+			}
+			else if (i == n&&m!=1&&m!=-1)
+			{
+				printf("%dx^%d", m, i);
+			}
+			else if (i != n && (m == 1||m==-1))
+			{
+				if (i == 1)
+				{
+					if (m == 1)
+					{
+						printf("+x");
+					}
+					else
+					{
+						printf("-x");
+					}
+				}
+				else
+				{
+					if (m == 1)
+					{
+						printf("+x^%d", i);
+					}
+					else
+					{
+						printf("-x^%d", i);
+					}
+				}
+			}
+		}
+	}
+	scanf("%d", &m);//处理最后一个常数
+	if (m > 0)
+	{
+		printf("+%d", m);
+	}
+	else if (m < 0)
+	{
+		printf("%d", m);
+	}
+}
